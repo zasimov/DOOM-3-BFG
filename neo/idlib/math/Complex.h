@@ -106,9 +106,9 @@ ID_INLINE idComplex::idComplex( const float r, const float i ) {
 	this->i = i;
 }
 
-ID_INLINE void idComplex::Set( const float r, const float i ) {
-	this->r = r;
-	this->i = i;
+ID_INLINE void idComplex::Set( const float a_r, const float a_i ) {
+	this->r = a_r;
+	this->i = a_i;
 }
 
 ID_INLINE void idComplex::Zero() {
