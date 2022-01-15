@@ -604,9 +604,9 @@ public:
 	// if the InitForPort fails, the idUDP.port field will remain 0
 	bool		InitForPort( int portNumber );
 
-	int			GetPort() const { return bound_to.port; }
-	netadr_t	GetAdr() const { return bound_to; }
-	uint32		GetUIntAdr() const { return ( bound_to.ip[0] | bound_to.ip[1] << 8 | bound_to.ip[2] << 16 | bound_to.ip[3] << 24 ); }
+	int			GetPort() const { return m_bound_to.port; }
+	netadr_t	GetAdr() const { return m_bound_to; }
+	uint32		GetUIntAdr() const { return ( m_bound_to.ip[0] | m_bound_to.ip[1] << 8 | m_bound_to.ip[2] << 16 | m_bound_to.ip[3] << 24 ); }
 	void		Close();
 
 	bool		GetPacket( netadr_t &from, void *data, int &size, int maxSize );
@@ -616,8 +616,8 @@ public:
 
 	void		SendPacket( const netadr_t to, const void *data, int size );
 
-	void		SetSilent( bool silent ) { this->silent = silent; }
-	bool		GetSilent() const { return silent; }
+	void		SetSilent( bool silent ) { this->m_silent = silent; }
+	bool		GetSilent() const { return m_silent; }
 
 	int			packetsRead;
 	int			bytesRead;
@@ -625,12 +625,12 @@ public:
 	int			packetsWritten;
 	int			bytesWritten;
 
-	bool		IsOpen() const { return netSocket > 0; }
+	bool		IsOpen() const { return m_netSocket > 0; }
 
 private:
-	netadr_t	bound_to;		// interface and port
-	int			netSocket;		// OS specific socket
-	bool		silent;			// don't emit anything ( black hole )
+	netadr_t	m_bound_to;		// interface and port
+	int			m_netSocket;		// OS specific socket
+	bool		m_silent;			// don't emit anything ( black hole )
 };
 
 
