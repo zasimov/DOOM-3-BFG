@@ -183,6 +183,7 @@ bulk of the codebase, so it is the best place for analyze pragmas.
 
 
 // checking format strings catches a LOT of errors
+#pragma warning( disable: 4467 )  // warning C4467: usage of ATL attributes is deprecated
 #include <CodeAnalysis\SourceAnnotations.h>
 #define	VERIFY_FORMAT_STRING	[SA_FormatString(Style="printf")]
 
