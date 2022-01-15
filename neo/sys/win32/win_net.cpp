@@ -876,9 +876,9 @@ idUDP::idUDP
 ========================
 */
 idUDP::idUDP() {
-	m_netSocket = 0;
-	memset( &m_bound_to, 0, sizeof( m_bound_to ) );
-	m_silent = false;
+	netSocket = 0;
+	memset( &bound_to, 0, sizeof( bound_to ) );
+	silent = false;
 	packetsRead = 0;
 	bytesRead = 0;
 	packetsWritten = 0;
@@ -900,10 +900,10 @@ idUDP::InitForPort
 ========================
 */
 bool idUDP::InitForPort( int portNumber ) {
-	m_netSocket = NET_IPSocket( net_ip.GetString(), portNumber, &m_bound_to );
-	if ( m_netSocket <= 0 ) {
-		m_netSocket = 0;
-		memset( &m_bound_to, 0, sizeof( m_bound_to ) );
+	netSocket = NET_IPSocket( net_ip.GetString(), portNumber, &bound_to );
+	if ( netSocket <= 0 ) {
+		netSocket = 0;
+		memset( &bound_to, 0, sizeof( bound_to ) );
 		return false;
 	}
 
@@ -916,10 +916,10 @@ idUDP::Close
 ========================
 */
 void idUDP::Close() {
-	if ( m_netSocket ) {
-		closesocket( m_netSocket );
-		m_netSocket = 0;
-		memset( &m_bound_to, 0, sizeof( m_bound_to ) );
+	if ( netSocket ) {
+		closesocket( netSocket );
+		netSocket = 0;
+		memset( &bound_to, 0, sizeof( bound_to ) );
 	}
 }
 
@@ -933,7 +933,7 @@ bool idUDP::GetPacket( netadr_t &from, void *data, int &size, int maxSize ) {
 
 	while ( 1 ) {
 
-		ret = Net_GetUDPPacket( m_netSocket, from, (char *)data, size, maxSize );
+		ret = Net_GetUDPPacket( netSocket, from, (char *)data, size, maxSize );
 		if ( !ret ) {
 			break;
 		}
@@ -954,7 +954,7 @@ idUDP::GetPacketBlocking
 */
 bool idUDP::GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout ) {
 
-	if ( !Net_WaitForData( m_netSocket, timeout ) ) {
+	if ( !Net_WaitForData( netSocket, timeout ) ) {
 		return false;
 	}
 
@@ -979,9 +979,9 @@ void idUDP::SendPacket( const netadr_t to, const void *data, int size ) {
 	packetsWritten++;
 	bytesWritten += size;
 
-	if ( m_silent ) {
+	if ( silent ) {
 		return;
 	}
 
-	Net_SendUDPPacket( m_netSocket, size, data, to );
+	Net_SendUDPPacket( netSocket, size, data, to );
 }
