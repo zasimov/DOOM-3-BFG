@@ -80,21 +80,21 @@ public:
 
 	bool	IsOverflowed() { return overflowed; }
 	
-	int		Write( const void * data, int length ) {
-		uint8 * src = (uint8*)data;
+	int		Write( const void * a_data, int a_length ) {
+		uint8 * src = (uint8*)a_data;
 		
-		for ( int i = 0; i < length && !IsOverflowed(); i++ ) {
+		for ( int i = 0; i < a_length && !IsOverflowed(); i++ ) {
 			WriteByte( src[i] );
 		}
 		
-		return length;
+		return a_length;
 	}
 
-	int		Read( void * data, int length, bool ignoreOverflow = false ) {
-		uint8 * src = (uint8*)data;
+	int		Read( void * a_data, int a_length, bool a_ignoreOverflow = false ) {
+		uint8 * src = (uint8*)a_data;
 		
-		for ( int i = 0; i < length; i++ ) {
-			int byte = ReadByte( ignoreOverflow );
+		for ( int i = 0; i < a_length; i++ ) {
+			int byte = ReadByte( a_ignoreOverflow );
 			
 			if ( byte == -1 ) {
 				return i;
@@ -103,11 +103,11 @@ public:
 			src[i] = (uint8)byte;
 		}
 		
-		return length;
+		return a_length;
 	}
 
-	int		WriteR( const void * data, int length ) {
-		uint8 * src = (uint8*)data;
+	int		WriteR( const void * a_data, int length ) {
+		uint8 * src = (uint8*)a_data;
 		
 		for ( int i = 0; i < length && !IsOverflowed(); i++ ) {
 			WriteByte( src[length - i - 1] );
@@ -116,8 +116,8 @@ public:
 		return length;
 	}
 
-	int		ReadR( void * data, int length, bool ignoreOverflow = false ) {
-		uint8 * src = (uint8*)data;
+	int		ReadR( void * a_data, int length, bool ignoreOverflow = false ) {
+		uint8 * src = (uint8*)a_data;
 		
 		for ( int i = 0; i < length; i++ ) {
 			int byte = ReadByte( ignoreOverflow );

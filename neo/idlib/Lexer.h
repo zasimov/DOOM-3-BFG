@@ -299,8 +299,8 @@ ID_INLINE const int idLexer::GetLineNum() {
 	return idLexer::line;
 }
 
-ID_INLINE void idLexer::SetFlags( int flags ) {
-	idLexer::flags = flags;
+ID_INLINE void idLexer::SetFlags( int a_flags ) {
+	idLexer::flags = a_flags;
 }
 
 ID_INLINE int idLexer::GetFlags() {

@@ -143,10 +143,10 @@ public:
 	int						GetInteger() const { return internalVar->integerValue; }
 	float					GetFloat() const { return internalVar->floatValue; }
 
-	void					SetString( const char *value ) { internalVar->InternalSetString( value ); }
-	void					SetBool( const bool value ) { internalVar->InternalSetBool( value ); }
-	void					SetInteger( const int value ) { internalVar->InternalSetInteger( value ); }
-	void					SetFloat( const float value ) { internalVar->InternalSetFloat( value ); }
+	void					SetString( const char *a_value ) { internalVar->InternalSetString( a_value ); }
+	void					SetBool( const bool a_value ) { internalVar->InternalSetBool( a_value ); }
+	void					SetInteger( const int a_value ) { internalVar->InternalSetInteger( a_value ); }
+	void					SetFloat( const float a_value ) { internalVar->InternalSetFloat( a_value ); }
 
 	void					SetInternalVar( idCVar *cvar ) { internalVar = cvar; }
 
@@ -277,17 +277,17 @@ extern idCVarSystem *		cvarSystem;
 ===============================================================================
 */
 
-ID_INLINE void idCVar::Init( const char *name, const char *value, int flags, const char *description,
-							float valueMin, float valueMax, const char **valueStrings, argCompletion_t valueCompletion ) {
-	this->name = name;
-	this->value = value;
-	this->flags = flags;
-	this->description = description;
-	this->flags = flags | CVAR_STATIC;
-	this->valueMin = valueMin;
-	this->valueMax = valueMax;
-	this->valueStrings = valueStrings;
-	this->valueCompletion = valueCompletion;
+ID_INLINE void idCVar::Init( const char *a_name, const char *a_value, int a_flags, const char *a_description,
+							float a_valueMin, float a_valueMax, const char **a_valueStrings, argCompletion_t a_valueCompletion ) {
+	this->name = a_name;
+	this->value = a_value;
+	this->flags = a_flags;
+	this->description = a_description;
+	this->flags = a_flags | CVAR_STATIC;
+	this->valueMin = a_valueMin;
+	this->valueMax = a_valueMax;
+	this->valueStrings = a_valueStrings;
+	this->valueCompletion = a_valueCompletion;
 	this->integerValue = 0;
 	this->floatValue = 0.0f;
 	this->internalVar = this;

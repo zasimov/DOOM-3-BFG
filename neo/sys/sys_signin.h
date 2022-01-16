@@ -62,7 +62,7 @@ public:
 	  // Common helper functions
 	  //================================================================================
 
-	  void 					SetDesiredLocalUsers( int minDesiredLocalUsers, int maxDesiredLocalUsers ) { this->minDesiredLocalUsers = minDesiredLocalUsers; this->maxDesiredLocalUsers = maxDesiredLocalUsers; }
+	  void 					SetDesiredLocalUsers( int a_minDesiredLocalUsers, int a_maxDesiredLocalUsers ) { this->minDesiredLocalUsers = a_minDesiredLocalUsers; this->maxDesiredLocalUsers = a_maxDesiredLocalUsers; }
 	  bool 					ProcessInputEvent( const sysEvent_t * ev );
 	  idPlayerProfile *		GetDefaultProfile();
 
